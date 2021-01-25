@@ -1,0 +1,9 @@
+.imgBlock {
+  width: auto;
+  height: 350px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: .25rem;
+  margin-bottom: 20px;
+}

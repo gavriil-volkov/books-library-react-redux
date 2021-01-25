@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+input {
+  margin-bottom: 15px;
+}
+
+.card {
+  border: none;
+  margin-bottom: 40px;
+}
+
+.changePhoto {
+  color: transparent;
+  padding: 0;
+  border: none;
+}
+
+.changePhoto::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.changePhoto::before {
+  content: '';
+  display: flex;
+  background-image: url(./Components/Form/img.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 30px 30px;
+  background-size: 100%;
+  margin-right: 15px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  float: left;
+}
+
+.userPic {
+  color: #000;
+  border-bottom: 0;
+  white-space: normal;
+  font-size: 0.8rem;
+  width: 200px;
+}
+
+.form-control:focus{
+  outline: 0;
+  box-shadow: none;
+}
