@@ -12,4 +12,4 @@
 
 ### Preview проекта
 
-![screenshot](Book-Library.gif)
+![screenshot](http://books.viil.ru/books.gif)
