@@ -26,25 +26,39 @@ function Form() {
   }
 
   const [inputs, setInputs] = useState([{
-    placeholder: "Название книги*",
+    placeholder: "Название книги* (макс. 30 символов)",
     value: '',
-    name: 'title'
+    name: 'title',
+    maxlength: '30',
+    type: 'text',
   }, {
-    placeholder: "Автор*",
+    placeholder: "Автор* (макс. 45 символов)",
     value: '',
-    name: 'author'
+    name: 'author',
+    maxlength: '45',
+    type: 'text',
   }, {
-    placeholder: "Колличество страниц*",
+    placeholder: "Колличество страниц* (макс. 10000)",
     value: '',
-    name: 'numberOfPages'
+    name: 'numberOfPages',
+    maxlength: '4',
+    type: 'number',
+    min: "0",
+    max: "10000",
   }, {
-    placeholder: "Издательство*",
+    placeholder: "Издательство* (макс. 30 символов)",
     value: '',
-    name: 'publishingHouse'
+    name: 'publishingHouse',
+    maxlength: '30',
+    type: 'text'
   }, {
-    placeholder: "Год публикации*",
+    placeholder: "Год публикации* (1800 - 2021)",
     value: '',
-    name: 'year'
+    name: 'year',
+    maxlength: '4',
+    type: 'number',
+    min: "1800",
+    max: "2021"
   }])
 
   const dispatch = useDispatch()
@@ -89,7 +103,7 @@ function Form() {
       <h1>Библиотека книг 📚</h1>
       <h2 className="mt-3 mb-5">React(Hooks) + Redux + Firebase + LocalStorage</h2>
       <form onSubmit={handlerSubmit} className="mt-3 mb-5">
-        {inputs.map(el => (<input key={el.placeholder} name={el.name} onChange={handlerChange} value={el.value} type="text" className="form-control" placeholder={el.placeholder} required />))}
+        {inputs.map(el => (<input key={el.placeholder} type={el.type} maxlength={el.maxlength} name={el.name} onChange={handlerChange} value={el.value} className="form-control" placeholder={el.placeholder} min={el.min} max={el.max} required />))}
         <input onChange={handlerFileChange} type="file" className="form-control userPic changePhoto" ref={ref} required />
         {progress ? <div className="mt-3 mb-2"><progress value={progress} max="100" /></div> : ''}
         <div><small>*Поля обязательные для заполнения</small></div>
