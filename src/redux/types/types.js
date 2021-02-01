@@ -1,8 +1,10 @@
 export const ADD_NEW_BOOK = 'ADD_NEW_BOOK'
 export const EDIT_BOOK = 'EDIT_BOOK'
 export const DELETE_BOOK = 'DELETE_BOOK'
+export const CHANGE_IMG = 'CHANGE_IMG'
+export const DELETE_IMG = 'DELETE_IMG'
 export const SORT_BY_YEAR = 'SORT_BY_YEAR'
-export const SORT_BY_ASC = 'SORT_BY_ASC'
-
-
-
+export const SORT_BY_TITLE = 'SORT_BY_TITLE'
+export const CHANGE_BUTTON_COLOR_BY_TITLE = 'CHANGE_BUTTON_COLOR_BY_TITLE'
+export const CHANGE_BUTTON_COLOR_BY_YEAR = 'CHANGE_BUTTON_COLOR_BY_YEAR'
+export const CHANGE_SORT_TYPE = 'CHANGE_SORT_TYPE'

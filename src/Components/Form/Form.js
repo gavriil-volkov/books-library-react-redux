@@ -6,6 +6,77 @@ import { storage } from '../../firebase/firebase'
 function Form() {
   const [image, setImage] = useState('')
   const [progress, setProgress] = useState(0)
+  const [inputs, setInputs] = useState([{
+    title: "Название книги*",
+    placeholder: "Макс. 30 символов",
+    value: '',
+    name: 'title',
+    maxLength: '30',
+    type: 'text',
+    required: 'required',
+    className: 'col-md-12'
+  }, {
+    title: "Имя автора*",
+    placeholder: "Макс. 20 символов",
+    value: '',
+    name: 'authorName',
+    maxLength: '20',
+    type: 'text',
+    required: 'required',
+    className: 'col-md-6'
+  }, {
+    title: "Фамилия автора*",
+    placeholder: "Макс. 20 символов",
+    value: '',
+    name: 'authorSurname',
+    maxLength: '20',
+    type: 'text',
+    required: 'required',
+    className: 'col-md-6'
+  }, {
+    title: "Количество страниц* ",
+    placeholder: "Макс. 10000",
+    value: '',
+    name: 'numberOfPages',
+    type: 'number',
+    required: 'required',
+    min: "0",
+    max: "10000",
+    className: 'col-md-4'
+  }, {
+    title: "Издательство",
+    placeholder: "Макс. 30 символов",
+    value: '',
+    name: 'publishingHouse',
+    maxLength: '30',
+    type: 'text',
+    className: 'col-md-4'
+  }, {
+    title: "Год публикации",
+    placeholder: "1800 - 2021",
+    value: '',
+    name: 'publicationYear',
+    type: 'number',
+    min: '1800',
+    max: '2021',
+    className: 'col-md-4'
+  }, {
+    title: "Дата выхода в тираж",
+    value: '',
+    name: 'releaseDate',
+    type: 'date',
+    min: '1800-01-01',
+    className: 'col-md-4'
+  }, {
+    title: "ISBN",
+    placeholder: "Макс. 13 цифр",
+    value: '',
+    name: 'isbn',
+    minLength: '2',
+    maxLength: '13',
+    type: 'text',
+    className: 'col-md-4'
+  }])
 
   const ref = useRef()
 
@@ -14,52 +85,21 @@ function Form() {
   }
 
   function handlerChange({ target: { value, name } }) {
-    setInputs(prev => prev.map(el => {
-      if (el.name === name) {
-        return {
-          ...el,
-          value
+    let reg = /[\d]+/
+    if (reg.test(value) || !value) {
+      setInputs(prev => prev.map(el => {
+        if (el.name === name) {
+          return {
+            ...el,
+            value
+          }
         }
-      }
-      return el
-    }))
-  }
+        return el
+      }))
+    }
 
-  const [inputs, setInputs] = useState([{
-    placeholder: "Название книги* (макс. 30 символов)",
-    value: '',
-    name: 'title',
-    maxlength: '30',
-    type: 'text',
-  }, {
-    placeholder: "Автор* (макс. 45 символов)",
-    value: '',
-    name: 'author',
-    maxlength: '45',
-    type: 'text',
-  }, {
-    placeholder: "Колличество страниц* (макс. 10000)",
-    value: '',
-    name: 'numberOfPages',
-    maxlength: '4',
-    type: 'number',
-    min: "0",
-    max: "10000",
-  }, {
-    placeholder: "Издательство* (макс. 30 символов)",
-    value: '',
-    name: 'publishingHouse',
-    maxlength: '30',
-    type: 'text'
-  }, {
-    placeholder: "Год публикации* (1800 - 2021)",
-    value: '',
-    name: 'year',
-    maxlength: '4',
-    type: 'number',
-    min: "1800",
-    max: "2021"
-  }])
+
+  }
 
   const dispatch = useDispatch()
 
@@ -84,10 +124,9 @@ function Form() {
           .getDownloadURL()
           .then(url => {
             dispatch(addNewBook({
-              ...inputs
-                .reduce((acc, el) => ({
-                  ...acc, [el.name]: el.value
-                }), {}),
+              ...inputs.reduce((acc, el) => ({
+                ...acc, [el.name]: el.value,
+              }), {}),
               img: url
             }))
             setInputs(prev => prev.map(el => ({ ...el, value: '' })))
@@ -97,15 +136,37 @@ function Form() {
       }
     )
   }
-
   return (
     <>
       <h1>Библиотека книг 📚</h1>
       <h2 className="mt-3 mb-5">React(Hooks) + Redux + Firebase + LocalStorage</h2>
-      <form onSubmit={handlerSubmit} className="mt-3 mb-5">
-        {inputs.map(el => (<input key={el.placeholder} type={el.type} maxlength={el.maxlength} name={el.name} onChange={handlerChange} value={el.value} className="form-control" placeholder={el.placeholder} min={el.min} max={el.max} required />))}
-        <input onChange={handlerFileChange} type="file" className="form-control userPic changePhoto" ref={ref} required />
-        {progress ? <div className="mt-3 mb-2"><progress value={progress} max="100" /></div> : ''}
+      <form onSubmit={handlerSubmit} className="mt-3 mb-5 row g-3">
+        {inputs.map(el => (
+          <div className={el.className} key={el.title}>
+            <h4 className="inputTitle">{el.title}</h4>
+            <input
+              className="form-control"
+              onChange={handlerChange}
+              name={el.name}
+              type={el.type}
+              value={el.value}
+              maxLength={el.maxLength}
+              placeholder={el.placeholder}
+              min={el.min}
+              max={el.max}
+              required={el.required}
+            />
+          </div>
+        ))}
+        <div className="col-md-4 d-flex flex-column align-items-center">
+          <h4 className="inputTitle">Выбрать изображение*</h4>
+          <input onChange={handlerFileChange} type="file" className="form-control userPic changePhoto col-md-4" ref={ref} required />
+        </div>
+        {progress ?
+          <div className="mt-3 mb-2">
+            <progress value={progress} max="100" />
+          </div>
+          : ''}
         <div><small>*Поля обязательные для заполнения</small></div>
         <button type="submit" className="btn btn-primary mt-3 btn-lg">Добавить книгу</button>
       </form>

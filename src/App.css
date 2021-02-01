@@ -3,7 +3,7 @@
 }
 
 h5 {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 input {
@@ -19,6 +19,7 @@ input {
   color: transparent;
   padding: 0;
   border: none;
+  margin: 0 auto;
 }
 
 .changePhoto::-webkit-file-upload-button {
@@ -51,4 +52,32 @@ input {
 .form-control:focus{
   outline: 0;
   box-shadow: none;
+}
+
+.inputTitle{
+  text-align: left;
+}
+
+.editInput{
+  border-color: #deb88700;
+  border-bottom: 1px solid #ced4da;
+  border-radius: 0;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 0;
+}
+
+.editInput:focus{
+  border-color: #deb88700;
+  border-bottom: 1px solid #ced4da;
+  border-radius: 0;
+}
+
+.editInputDiv span {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 80%;
 }
