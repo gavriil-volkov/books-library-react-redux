@@ -1,6 +1,7 @@
 # Библиотека книг 📚 (CRUD App) с использованием LocalStorage
 
 [Ссылка на проект](http://books.viil.ru/)
+Желательно очистить LocalStorage перед запуском
 
 ## Стек: React(Hooks) + Redux + Firebase + LocalStorage + Bootstrap
 
