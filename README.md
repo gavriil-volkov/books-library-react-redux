@@ -23,4 +23,4 @@
 
 ### Preview проекта
 
-![screenshot](books.gif)
+![screenshot](Library-of-Books-App.gif)
