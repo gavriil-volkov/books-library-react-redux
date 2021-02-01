@@ -84,7 +84,7 @@ function List() {
 
   const sortByYear = () => {
     dispatch(
-      AC.changeSortType(
+      AC.typeOfSort(
         'YEAR'
       ),
       changeButtonColorByYear()
@@ -93,7 +93,7 @@ function List() {
 
   const sortByTitle = () => {
     dispatch(
-      AC.changeSortType(
+      AC.typeOfSort(
         'TITLE'
       ),
       changeButtonColorByTitle()

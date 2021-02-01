@@ -1,8 +1,8 @@
-import { CHANGE_SORT_TYPE } from "../types/types";
+import { TYPE_OF_SORT } from "../types/types";
 
 function sortReducer(state = '', action) {
   switch (action.type) {
-    case CHANGE_SORT_TYPE:
+    case TYPE_OF_SORT:
       return action.payload
   
     default:

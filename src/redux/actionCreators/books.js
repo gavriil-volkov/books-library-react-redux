@@ -59,9 +59,9 @@ export function changeBookImg(img, id) {
   }
 }
 
-export function changeSortType(sort) {
+export function typeOfSort(sort) {
   return {
-    type: TYPES.CHANGE_SORT_TYPE,
+    type: TYPES.TYPE_OF_SORT,
     payload: sort
   }
 }

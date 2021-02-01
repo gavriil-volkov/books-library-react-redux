@@ -85,20 +85,19 @@ function Form() {
   }
 
   function handlerChange({ target: { value, name } }) {
-    let reg = /[\d]+/
-    if (reg.test(value) || !value) {
-      setInputs(prev => prev.map(el => {
-        if (el.name === name) {
-          return {
-            ...el,
-            value
-          }
-        }
-        return el
-      }))
+    let reg = /[\D]+/
+    if (reg.test(value) && name === "isbn") {
+      value = ''
     }
-
-
+    setInputs(prev => prev.map(el => {
+      if (el.name === name) {
+        return {
+          ...el,
+          value
+        }
+      }
+      return el
+    }))
   }
 
   const dispatch = useDispatch()
